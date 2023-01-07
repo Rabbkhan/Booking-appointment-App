@@ -1,17 +1,26 @@
 let Name = document.getElementById('Name');
 let Ph = document.getElementById('phone');
+let email = document.getElementById('email');
 let btn = document.querySelector('.btn');
 
 btn.addEventListener('click', e =>{
     e.preventDefault();
-localStorage.setItem('Name', Name.value);
-localStorage.setItem('Phone', Ph.value);
+let username = Name.value;
+let Email = Ph.value;
+let  phone = email.value;
+
+const obj ={
+    username,
+    Email,
+    phone
+}
+localStorage.setItem(obj.Email, JSON.stringify(obj));
+
+showUserScreen(obj);
 })
+function showUserScreen(obj){
 
-let details = {
+    const parentElem = document.getElementById('listItem');
+    parentElem.innerHTML = parentElem.innerHTML +`<li>${obj.username} - ${obj.Email} - ${obj.phone}</li>` ;
+}
 
-    Name : "Rabbil",
-    age: 56
-};
-let myobj_serialized = JSON.stringify(details);
-localStorage.setItem('myobj', myobj_serialized);
