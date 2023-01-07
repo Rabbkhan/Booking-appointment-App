@@ -6,8 +6,8 @@ let btn = document.querySelector('.btn');
 btn.addEventListener('click', e =>{
     e.preventDefault();
 let username = Name.value;
-let Email = Ph.value;
-let  phone = email.value;
+let Email = email.value;
+let  phone = Ph.value;
 
 const obj ={
     username,
@@ -21,6 +21,13 @@ showUserScreen(obj);
 function showUserScreen(obj){
 
     const parentElem = document.getElementById('listItem');
-    parentElem.innerHTML = parentElem.innerHTML +`<li>${obj.username} - ${obj.Email} - ${obj.phone}</li>` ;
+    parentElem.innerHTML = parentElem.innerHTML +`<li>${obj.username} - ${obj.Email} - ${obj.phone} </li> <input type="button" id="delete" value="Delete">`;
+    let ID = document.getElementById('delete');
+    ID.addEventListener('click', e =>{
+           parentElem.remove();
+            localStorage.removeItem(obj.Email);
+        
+    })
+    
 }
 
