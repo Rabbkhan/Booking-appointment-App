@@ -21,13 +21,39 @@ showUserScreen(obj);
 function showUserScreen(obj){
 
     const parentElem = document.getElementById('listItem');
-    parentElem.innerHTML = parentElem.innerHTML +`<li>${obj.username} - ${obj.Email} - ${obj.phone} </li> <input type="button" id="delete" value="Delete">`;
-    let ID = document.getElementById('delete');
-    ID.addEventListener('click', e =>{
-           parentElem.remove();
-            localStorage.removeItem(obj.Email);
-        
-    })
-    
+
+    let childElem = document.createElement('li');
+     childElem.textContent = obj.username + ' - '  + obj.Email + ' - ' + obj.phone;
+     
+   parentElem.appendChild(childElem);
+
+
+   let DeleteButton = document.createElement('input');
+   DeleteButton.type = 'button',
+   DeleteButton.value = 'Delete'
+
+   DeleteButton.onclick = () =>{
+    localStorage.removeItem(obj.Email);
+    parentElem.removeChild(childElem);
+   }
+   let editButton = document.createElement('input');
+   editButton.type = 'button',
+   editButton.value = 'Edit'
+
+   editButton.onclick = () =>{
+    localStorage.removeItem(obj.Email);
+    parentElem.removeChild(childElem);
+
+    Name.value = obj.username;
+    Ph.value = obj.phone;
+    email.value = obj.Email;
+
+   }
+
+
+
+    childElem.appendChild(DeleteButton);
+    childElem.appendChild(editButton);
+    parentElem.appendChild(childElem);
 }
 
