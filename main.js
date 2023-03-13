@@ -14,7 +14,15 @@ const obj ={
     Email,
     phone
 }
-localStorage.setItem(obj.Email, JSON.stringify(obj));
+// localStorage.setItem(obj.Email, JSON.stringify(obj));
+axios.post('https://crudcrud.com/api/638ed1a414c34c5783ccdb0659765304/appoitmentData', obj)
+.then(res=>{
+    showUserScreen(res.data)
+    console.log(res)
+})
+.catch(err=>{
+    console.error(err)
+})
 
 showUserScreen(obj);
 })
