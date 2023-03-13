@@ -1,5 +1,5 @@
-let Name = document.getElementById('Name');
-let Ph = document.getElementById('phone');
+let Name = document.getElementById('username');
+let Ph = document.getElementById('phonenumber');
 let email = document.getElementById('email');
 let btn = document.querySelector('.btn');
 
@@ -7,7 +7,8 @@ btn.addEventListener('click', e =>{
     e.preventDefault();
 let username = Name.value;
 let Email = email.value;
-let  phone = Ph.value;
+let phone = Ph.value;
+console.log(btn);
 
 const obj ={
     username,
@@ -15,23 +16,43 @@ const obj ={
     phone
 }
 // localStorage.setItem(obj.Email, JSON.stringify(obj));
-axios.post('https://crudcrud.com/api/638ed1a414c34c5783ccdb0659765304/appoitmentData', obj)
+axios.post('https://crudcrud.com/api/38361136781b4d6699ae4ba73cecbeab/appoitmentData', obj)
 .then(res=>{
     showUserScreen(res.data)
     console.log(res)
 })
 .catch(err=>{
-    console.error(err)
+document.body.innerHTML = document.body.innerHTML + "<h4>Something went wrong </h4>";
+console.error(err)
 })
 
-showUserScreen(obj);
+
+
+
+window.addEventListener('DOMContentLoaded', ()=>{
+axios.get('https://crudcrud.com/api/38361136781b4d6699ae4ba73cecbeab/appoitmentData')
+.then(res=>{
+    console.log(res);
+    for(var i=0; i<res.data.length; i++){
+        showUserScreen(res.data[i]);
+    }
 })
+.catch(err =>{
+    console.log(err);
+})
+
+})
+
+
+
+
 function showUserScreen(obj){
+    
 
-    const parentElem = document.getElementById('listItem');
+    const parentElem = document.getElementById('listOfitems');
 
     let childElem = document.createElement('li');
-     childElem.textContent = obj.username + ' - '  + obj.Email + ' - ' + obj.phone;
+     childElem.textContent = `${obj.username} ${obj.Email}  ${obj.phone}`;
      
    parentElem.appendChild(childElem);
 
@@ -65,3 +86,4 @@ function showUserScreen(obj){
     parentElem.appendChild(childElem);
 }
 
+})

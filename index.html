@@ -15,30 +15,121 @@
         <form>
             <div class="mb-3">
                 <label for="Name" class="form-label">Name </label>
-                <input type="text" class="form-control" id="Name" aria-describedby="name">
+                <input type="text" class="form-control" name="username" id="username" aria-describedby="name">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email </label>
-                <input type="email" class="form-control" id="email" aria-describedby="email">
+                <input type="email" class="form-control" name="emailId" id="email" aria-describedby="email">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">phone</label>
-                <input type="tel" class="form-control" id="phone">
+                <input type="tel" class="form-control"  name="phonenumber" id="phonenumber">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <ul id ="listItem">
-            
-        </ul>
-    </div>
-
-
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
-
-
-
-</body>
-
-</html>
+        <ul id='listOfitems'></ul>
+     </div>
+     
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+     <script src="main.js"></script>
+     <!-- <script>
+     
+     
+     function saveToLocalStorage(event) {
+                     event.preventDefault();
+                     const name = event.target.username.value;
+                     const email = event.target.emailId.value;
+                     const phonenumber = event.target.phonenumber.value;
+                     // localStorage.setItem('name', name);
+                     // localStorage.setItem('email', email);
+                     // localStorage.setItem('phonenumber', phonenumber)
+                     const obj = {
+                         name,
+                         email,
+                         phonenumber
+                     }
+     
+                     axios.post("https://crudcrud.com/api/38361136781b4d6699ae4ba73cecbeab/appoitmentData", obj)
+                         .then((respone) => {
+                             showNewUserOnScreen(respone.data)
+                             console.log(respone)
+                         })
+                         .catch((err)=> {
+                             document.body.innerHTML = document.body.innerHTML  + "<h4> Something went wrong </h4>"
+                             console.log(err);
+                         })
+     
+                     // localStorage.setItem(obj.email, JSON.stringify(obj))
+                     // showNewUserOnScreen(obj)
+                 }
+     
+                 window.addEventListener("DOMContentLoaded", () => {
+                     axios.get("https://crudcrud.com/api/38361136781b4d6699ae4ba73cecbeab/appoitmentData")
+                         .then((response) => {
+                             console.log(response)
+     
+                             for(var i=0; i< response.data.length; i++){
+                                 showNewUserOnScreen(response.data[i])
+                             }
+                         })
+                         .catch((error) => {
+                             console.log(error)
+                         })
+                 })
+     
+                 function showNewUserOnScreen(obj){
+     
+                     document.getElementById('email').value='';
+                     document.getElementById('username').value='';
+                     document.getElementById('phonenumber').value='';
+                     // console.log(localStorage.getItem(user.emailId))
+                     // if(localStorage.getItem(user.email) !== null){
+                     //     removeUserFromScreen(user.email)
+                     }
+     
+                     
+                         const parentElem = document.getElementById('listOfUsers');
+     
+                                         let childElem = document.createElement('li');
+          
+                                         childElem.textContent = `<li id=${obj.email}> ${obj.name} - ${obj.email} </li>`
+     
+                                         parentElem.appendChild(childElem);
+     
+                                                     let DeleteButton = document.createElement('input');
+                                                     DeleteButton.type = 'button',
+                                                     DeleteButton.value = 'Delete'
+     
+                                                     DeleteButton.onclick = () =>{
+                                                     localStorage.removeItem(obj.Email);
+                                                     parentElem.removeChild(childElem);
+                                                     }
+                                                     let editButton = document.createElement('input');
+                                                     editButton.type = 'button',
+                                                     editButton.value = 'Edit'
+     
+                                                     // editButton.onclick = () =>{
+                                                     //     localStorage.removeItem(obj.Email);
+                                                     //     parentElem.removeChild(childElem);
+     
+                                                     //     Name.value = obj.username;
+                                                     //     Ph.value = obj.phone;
+                                                     //     email.value = obj.Email;
+     
+                                                     // }
+     
+                                                         childElem.appendChild(DeleteButton);
+                                                         childElem.appendChild(editButton);
+                                                         parentElem.appendChild(childElem);
+                                                     
+     
+                                 
+     </script>
+      -->
+     
+     </body>
+     
+     </html>
+                
+                
