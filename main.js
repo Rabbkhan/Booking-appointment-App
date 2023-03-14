@@ -8,7 +8,7 @@ btn.addEventListener('click', e =>{
 let username = Name.value;
 let Email = email.value;
 let phone = Ph.value;
-console.log(btn);
+// console.log(btn);
 
 const obj ={
     username,
